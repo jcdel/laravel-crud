@@ -14,7 +14,9 @@ class CoronaLocalController extends Controller
      */
     public function index()
     {
-        //
+        $coronaLocalCases = CoronaLocal::all();
+
+        return view('coronas/local/index', compact('coronaLocalCases'));
     }
 
     /**
@@ -37,12 +39,11 @@ class CoronaLocalController extends Controller
     {
         $validatedData = $request->validate([
             'corona_global_id' => 'required|numeric',
-            'name' => 'required|string',
             'age' => 'required|numeric',
-            'sex' => 'required|string',
-            'address' => 'required|string',
+            'gender' => 'required|string',
             'nationality' => 'required|string',
-            'hospital_name' => 'required|string'
+            'hospital_name' => 'required|string',
+            'status' => 'required|string'
         ]);
         $show = CoronaLocal::create($validatedData);
    
@@ -85,16 +86,15 @@ class CoronaLocalController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string',
             'age' => 'required|numeric',
-            'sex' => 'required|string',
-            'address' => 'required|string',
+            'gender' => 'required|string',
             'nationality' => 'required|string',
-            'hospital_name' => 'required|string'
+            'hospital_name' => 'required|string',
+            'status' => 'required|string'
         ]);
         CoronaLocal::whereId($id)->update($validatedData);
 
-        return redirect('/coronas_local/index')->with('success', 'Corona Case Data is successfully updated');
+        return redirect('/coronas_local/'.$id)->with('success', 'Corona Case Data is successfully updated');
     }
 
     /**
@@ -108,6 +108,6 @@ class CoronaLocalController extends Controller
         $coronalocalCase = CoronaLocal::findOrFail($id);
         $coronalocalCase->delete();
 
-        return redirect('/coronas_local')->with('success', 'Corona Case Data is successfully deleted');
+        return redirect('/coronas_local/index')->with('success', 'Corona Case Data is successfully deleted');
     }
 }

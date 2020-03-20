@@ -8,11 +8,10 @@ class CoronaLocal extends Model
 {
     protected $fillable = [
         'corona_global_id',
-        'name', 
-        'sex', 
-        'age',
-        'address',
+        'age', 
+        'gender',
         'nationality',
         'hospital_name',
+        'status',
     ];
 }

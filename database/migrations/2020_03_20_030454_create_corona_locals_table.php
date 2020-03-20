@@ -15,12 +15,11 @@ class CreateCoronaLocalsTable extends Migration
     {
         Schema::create('corona_locals', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('sex');
             $table->integer('age');
-            $table->string('address');
+            $table->string('gender');
             $table->string('nationality');
             $table->string('hospital_name');
+            $table->string('status');
             $table->timestamps();
         });
     }

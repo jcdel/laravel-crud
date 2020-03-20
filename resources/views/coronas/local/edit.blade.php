@@ -24,20 +24,12 @@
           <div class="form-group">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-              <label for="name">Name:</label>
-              <input type="text" class="form-control" name="name" value="{{ $coronaLocalCase->name }}"/>
-          </div>
-          <div class="form-group">
               <label for="age">Age :</label>
               <input type="text" class="form-control" name="age" value="{{ $coronaLocalCase->age }}"/>
           </div>
           <div class="form-group">
-            <label for="sex">Sex :</label>
-            <input type="text" class="form-control" name="sex" value="{{ $coronaLocalCase->sex }}"/>
-          </div>
-          <div class="form-group">
-            <label for="address">Address :</label>
-            <input type="text" class="form-control" name="address" value="{{ $coronaLocalCase->address }}"/>
+            <label for="gender">Gender :</label>
+            <input type="text" class="form-control" name="gender" value="{{ $coronaLocalCase->gender }}"/>
           </div>
           <div class="form-group">
             <label for="nationality">Nationality :</label>
@@ -47,6 +39,10 @@
             <label for="hospital_name">Hospital :</label>
             <input type="text" class="form-control" name="hospital_name" value="{{ $coronaLocalCase->hospital_name }}"/>
           </div>
+          <div class="form-group">
+            <label for="status">Status:</label>
+            <input type="text" class="form-control" name="status" value="{{ $coronaLocalCase->status }}"/>
+        </div>
           <button type="submit" class="btn btn-primary">Update Data</button>
       </form>
   </div>

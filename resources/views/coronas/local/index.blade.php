@@ -21,27 +21,25 @@
   <table class="table table-striped">
     <thead>
         <tr>
-          <td>ID</td>
-          <td>Name</td>
-          <td>Sex</td>
+          <td>Case No.</td>
           <td>Age</td>
-          <td>Address</td>
+          <td>Gender</td>
           <td>Nationality</td>
           <td>Hospital</td>
+          <td>Status</td>
           <td colspan="2">Action</td>
         </tr>
     </thead>
     <tbody>
-      
+
         @foreach($coronaLocalCases as $case)
         <tr>
             <td>{{ $case->id }}</td>
-            <td>{{ $case->name }}</td>
-            <td>{{ $case->sex }}</td>
             <td>{{ $case->age }}</td>
-            <td>{{ $case->address }}</td>
+            <td>{{ $case->gender }}</td>
             <td>{{ $case->nationality }}</td>
             <td>{{ $case->hospital_name }}</td>
+            <td>{{ $case->status }}</td>
             <td><a href="{{ route('coronas.local.edit', $case->id)}}" class="btn btn-primary">Edit</a></td>
             <td>
                 <form action="{{ route('coronas.local.destroy', $case->id)}}" method="post">

@@ -24,25 +24,16 @@
 
         {{ csrf_field() }}
 
-        {{-- <input type="hidden" value="{{$user->id}}" name="corona_global_id"> --}}
-        
+        {{-- change to dynamic value --}}
+        <input type="hidden" value="1" name="corona_global_id">
 
-          <div class="form-group">
-              <label for="name">Name:</label>
-              <input type="hidden" value="1" name="corona_global_id"/>
-              <input type="text" class="form-control" name="name"/>
-          </div>
           <div class="form-group">
               <label for="age">Age :</label>
               <input type="text" class="form-control" name="age"/>
           </div>
           <div class="form-group">
-            <label for="sex">Sex :</label>
-            <input type="text" class="form-control" name="sex"/>
-          </div>
-          <div class="form-group">
-            <label for="address">Address :</label>
-            <input type="text" class="form-control" name="address"/>
+            <label for="gender">Gender :</label>
+            <input type="text" class="form-control" name="gender"/>
           </div>
           <div class="form-group">
             <label for="nationality">Nationality :</label>
@@ -51,6 +42,10 @@
           <div class="form-group">
             <label for="hospital_name">Hospital :</label>
             <input type="text" class="form-control" name="hospital_name"/>
+          </div>
+          <div class="form-group">
+            <label for="status">Status :</label>
+            <input type="text" class="form-control" name="status"/>
           </div>
           <button type="submit" class="btn btn-primary">Add Data</button>
       </form>

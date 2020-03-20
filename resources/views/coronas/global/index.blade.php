@@ -16,7 +16,7 @@
     </div><br />
   @endif
 <div class="title text-center mb-40"><h1>2019-2020 Corona Virus Pandemic</h1></div>
- <div class="create-btn mb-40"><a href="{{ route('coronas.global.create')}}" class="btn btn-primary">Add Corona Virus Data</a></div>
+ <div class="create-btn mb-40"><a href="{{ route('coronas.global.create.global')}}" class="btn btn-primary">Add Corona Virus Data</a></div>
   <table class="table table-striped">
     <thead>
         <tr>
@@ -36,11 +36,12 @@
             <td>{{ number_format($case->cases) }}</td>
             <td>{{ number_format($case->deaths) }}</td>
             <td>{{ number_format($case->recovered) }}</td>
+            <td><a href="{{ route('coronas.local.show', $case->id)}}" class="btn btn-primary">View</a></td>
             <td><a href="{{ route('coronas.global.edit', $case->id)}}" class="btn btn-primary">Edit</a></td>
             <td>
                 <form action="{{ route('coronas.global.destroy', $case->id)}}" method="post">
-                  @csrf
-                  @method('DELETE')
+                  {{ csrf_field() }}
+                  {{ method_field('DELETE') }}
                   <button class="btn btn-danger" type="submit">Delete</button>
                 </form>
             </td>

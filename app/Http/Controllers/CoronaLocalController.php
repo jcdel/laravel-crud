@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CoronaLocal;
 
 class CoronaLocalController extends Controller
 {
@@ -23,7 +24,7 @@ class CoronaLocalController extends Controller
      */
     public function create()
     {
-        //
+        return view('coronas/local/create');
     }
 
     /**
@@ -34,7 +35,18 @@ class CoronaLocalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'corona_global_id' => 'required|numeric',
+            'name' => 'required|string',
+            'age' => 'required|numeric',
+            'sex' => 'required|string',
+            'address' => 'required|string',
+            'nationality' => 'required|string',
+            'hospital_name' => 'required|string'
+        ]);
+        $show = CoronaLocal::create($validatedData);
+   
+        return redirect('/coronas_local/index')->with('success', 'Corona Case is successfully saved');
     }
 
     /**
@@ -45,7 +57,9 @@ class CoronaLocalController extends Controller
      */
     public function show($id)
     {
-        //
+        $coronaLocalCases = CoronaLocal::where('corona_global_id', $id)->paginate(5);
+
+        return view('coronas/local/index', compact('coronaLocalCases'));
     }
 
     /**
@@ -56,7 +70,9 @@ class CoronaLocalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $coronaLocalCase = CoronaLocal::findOrFail($id);
+
+        return view('coronas/local/edit', compact('coronaLocalCase'));
     }
 
     /**
@@ -68,7 +84,17 @@ class CoronaLocalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'age' => 'required|numeric',
+            'sex' => 'required|string',
+            'address' => 'required|string',
+            'nationality' => 'required|string',
+            'hospital_name' => 'required|string'
+        ]);
+        CoronaLocal::whereId($id)->update($validatedData);
+
+        return redirect('/coronas_local/index')->with('success', 'Corona Case Data is successfully updated');
     }
 
     /**
@@ -79,6 +105,9 @@ class CoronaLocalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $coronalocalCase = CoronaLocal::findOrFail($id);
+        $coronalocalCase->delete();
+
+        return redirect('/coronas_local')->with('success', 'Corona Case Data is successfully deleted');
     }
 }

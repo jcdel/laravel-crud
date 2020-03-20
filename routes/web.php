@@ -20,9 +20,19 @@ Route::get('/', function () {
 /**Corona Global Routes */
 Route::group(['prefix' => 'coronas_global'], function () {
     Route::get('/', 'CoronaGlobalController@index')->name('coronas.global.index');
-    Route::get('/create', 'CoronaGlobalController@create')->name('coronas.global.create');
+    Route::get('/create/global', 'CoronaGlobalController@create')->name('coronas.global.create.global');
     Route::get('/{id}/edit', 'CoronaGlobalController@edit')->name('coronas.global.edit');
-    Route::post('/store', 'CoronaGlobalController@store')->name('coronas.global.store');
+    Route::post('/store_global', 'CoronaGlobalController@store')->name('coronas.global.store.global');
     Route::patch('/{id}', 'CoronaGlobalController@update')->name('coronas.global.update');
     Route::delete('/{id}', 'CoronaGlobalController@destroy')->name('coronas.global.destroy');
+});
+
+/**Corona Local Routes */
+Route::group(['prefix' => 'coronas_local'], function () {
+    Route::get('/{id}', 'CoronaLocalController@show')->name('coronas.local.show');
+    Route::get('/create/local', 'CoronaLocalController@create')->name('coronas.local.create.local');
+    Route::get('/{id}/edit', 'CoronaLocalController@edit')->name('coronas.local.edit');
+    Route::post('/store/local', 'CoronaLocalController@store')->name('coronas.local.store.local');
+    Route::patch('/{id}', 'CoronaLocalController@update')->name('coronas.local.update');
+    Route::delete('/{id}', 'CoronaLocalController@destroy')->name('coronas.local.destroy');
 });

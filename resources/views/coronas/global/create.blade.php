@@ -6,6 +6,7 @@
     margin-top: 40px;
   }
 </style>
+<div class="back-btn mb-40"><a href="{{ route('coronas.global.index') }}" class="btn btn-primary">Back to Home</a></div>
 <div class="card uper">
   <div class="card-header">
     Add Corona Virus Data
@@ -20,9 +21,11 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('coronas.global.store') }}">
+      <form method="post" action="{{ route('coronas.global.store.global') }}">
+
+        {{ csrf_field() }}
+
           <div class="form-group">
-              @csrf
               <label for="country_name">Country Name:</label>
               <input type="text" class="form-control" name="country_name"/>
           </div>

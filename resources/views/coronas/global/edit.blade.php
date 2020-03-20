@@ -8,7 +8,7 @@
 </style>
 <div class="card uper">
   <div class="card-header">
-    Edit Global Corona Virus Data
+    Edit Corona Virus Data
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -30,6 +30,14 @@
           <div class="form-group">
               <label for="cases">Cases :</label>
               <input type="text" class="form-control" name="cases" value="{{ $coronaGlobalCase->cases }}"/>
+          </div>
+          <div class="form-group">
+            <label for="deaths">Deaths :</label>
+            <input type="text" class="form-control" name="deaths" value="{{ $coronaGlobalCase->deaths }}"/>
+          </div>
+          <div class="form-group">
+            <label for="recovered">Recovered :</label>
+            <input type="text" class="form-control" name="recovered" value="{{ $coronaGlobalCase->recovered }}"/>
           </div>
           <button type="submit" class="btn btn-primary">Update Data</button>
       </form>

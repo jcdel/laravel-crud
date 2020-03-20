@@ -40,6 +40,8 @@ class CoronaGlobalController extends Controller
         $validatedData = $request->validate([
             'country_name' => 'required|max:255',
             'cases' => 'required|numeric',
+            'deaths' => 'required|numeric',
+            'recovered' => 'required|numeric'
         ]);
         $show = CoronaGlobal::create($validatedData);
    
@@ -82,6 +84,8 @@ class CoronaGlobalController extends Controller
         $validatedData = $request->validate([
             'country_name' => 'required|max:255',
             'cases' => 'required|numeric',
+            'deaths' => 'required|numeric',
+            'recovered' => 'required|numeric'
         ]);
         CoronaGlobal::whereId($id)->update($validatedData);
 

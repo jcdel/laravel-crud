@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CoronaLocal;
+use App\CoronaGlobal;
 
 class CoronaLocalController extends Controller
 {
@@ -47,7 +48,7 @@ class CoronaLocalController extends Controller
         ]);
         $show = CoronaLocal::create($validatedData);
    
-        return redirect('/coronas_local/index')->with('success', 'Corona Case is successfully saved');
+        return redirect('/coronas_global')->with('success', 'Corona Case is successfully saved');
     }
 
     /**
@@ -58,8 +59,11 @@ class CoronaLocalController extends Controller
      */
     public function show($id)
     {
-        $coronaLocalCases = CoronaLocal::where('corona_global_id', $id)->paginate(5);
+        //$coronaLocalCases = CoronaLocal::where('corona_global_id', $id)->paginate(5);
 
+        $corona = CoronaGlobal::findOrFail($id);
+        $coronaLocalCases = $corona->coronaLocal->toArray();
+        
         return view('coronas/local/index', compact('coronaLocalCases'));
     }
 
@@ -108,6 +112,6 @@ class CoronaLocalController extends Controller
         $coronalocalCase = CoronaLocal::findOrFail($id);
         $coronalocalCase->delete();
 
-        return redirect('/coronas_local/index')->with('success', 'Corona Case Data is successfully deleted');
+        return redirect('/coronas_global')->with('success', 'Corona Case Data is successfully deleted');
     }
 }

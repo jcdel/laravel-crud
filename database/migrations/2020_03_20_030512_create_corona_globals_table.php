@@ -14,7 +14,7 @@ class CreateCoronaGlobalsTable extends Migration
     public function up()
     {
         Schema::create('corona_globals', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('country_name');
             $table->integer('cases');
             $table->integer('deaths');

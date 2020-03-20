@@ -14,4 +14,8 @@ class CoronaLocal extends Model
         'hospital_name',
         'status',
     ];
+
+    public function coronaGlobal() {
+        return $this->belongsTo(CoronaGlobal::class);
+    }
 }

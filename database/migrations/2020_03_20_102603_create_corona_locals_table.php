@@ -14,13 +14,19 @@ class CreateCoronaLocalsTable extends Migration
     public function up()
     {
         Schema::create('corona_locals', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->integer('corona_global_id')->unsigned();
             $table->integer('age');
             $table->string('gender');
             $table->string('nationality');
             $table->string('hospital_name');
             $table->string('status');
             $table->timestamps();
+
+            $table->foreign('corona_global_id')
+            ->references('id')
+            ->on('corona_globals')
+            ->onDelete('cascade');
         });
     }
 

@@ -8,7 +8,7 @@
 </style>
 <div class="card uper">
   <div class="card-header">
-    Add Corona Virus Data for China
+    Add Data
   </div>
   <div class="card-body">
     @if ($errors->any())

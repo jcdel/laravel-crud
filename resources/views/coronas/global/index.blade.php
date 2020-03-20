@@ -16,7 +16,7 @@
     </div><br />
   @endif
 <div class="title text-center mb-40"><h1>2019-2020 Corona Virus Pandemic</h1></div>
- <div class="create-btn mb-40"><a href="{{ route('coronas.global.create.global')}}" class="btn btn-primary">Add Corona Virus Data</a></div>
+ <div class="create-btn mb-40"><a href="{{ route('coronas.global.create.global')}}" class="btn btn-primary">Add Data</a></div>
   <table class="table table-striped">
     <thead>
         <tr>

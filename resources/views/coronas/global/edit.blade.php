@@ -9,7 +9,7 @@
 <div class="back-btn mb-40"><a href="{{ route('coronas.global.index') }}" class="btn btn-primary">Back to Home</a></div>
 <div class="card uper">
   <div class="card-header">
-    Edit Corona Virus Data
+    Edit Data
   </div>
   <div class="card-body">
     @if ($errors->any())

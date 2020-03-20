@@ -89,7 +89,7 @@ class CoronaGlobalController extends Controller
         ]);
         CoronaGlobal::whereId($id)->update($validatedData);
 
-        return redirect('/coronas_global')->with('success', 'Global Corona Case Data is successfully updated');
+        return redirect('/coronas_global')->with('success', 'Corona Case Data is successfully updated');
     }
 
     /**
@@ -103,6 +103,6 @@ class CoronaGlobalController extends Controller
         $coronaGlobalCase = CoronaGlobal::findOrFail($id);
         $coronaGlobalCase->delete();
 
-        return redirect('/coronas_global')->with('success', 'Global Corona Case Data is successfully deleted');
+        return redirect('/coronas_global')->with('success', 'Corona Case Data is successfully deleted');
     }
 }

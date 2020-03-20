@@ -36,14 +36,7 @@
             <td>{{ number_format($case->cases) }}</td>
             <td>{{ number_format($case->deaths) }}</td>
             <td>{{ number_format($case->recovered) }}</td>
-            <td>
-              <form action="{{ route('coronas.global.edit', $case->id)}}" method="post">
-                @csrf
-                @method('PATCH')
-                <button class="btn btn-primary" type="submit">Edit</button>
-              </form>
-            </td>
-              {{-- <a href="{{ route('coronas.global.edit', $case->id)}}" class="btn btn-primary">Edit</a></td> --}}
+            <td><a href="{{ route('coronas.global.edit', $case->id)}}" class="btn btn-primary">Edit</a></td>
             <td>
                 <form action="{{ route('coronas.global.destroy', $case->id)}}" method="post">
                   @csrf

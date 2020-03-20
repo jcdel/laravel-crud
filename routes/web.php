@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('coronas_global', 'CoronaGlobalController');
+Route::resource('coronas_local', 'CoronaLocalController');

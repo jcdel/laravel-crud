@@ -17,5 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('coronas_global', 'CoronaGlobalController');
-Route::resource('coronas_local', 'CoronaLocalController');
+/**Corona Global Routes */
+
+Route::group(['prefix' => 'coronas_global'], function () {
+    Route::get('/', 'CoronaGlobalController@index')->name('coronas.global.index');
+    Route::get('/create', 'CoronaGlobalController@create')->name('coronas.global.create');
+    Route::post('/store', 'CoronaGlobalController@store')->name('coronas.global.store');
+    Route::patch('/edit', 'CoronaGlobalController@edit')->name('coronas.global.edit');
+    Route::delete('/destroy', 'CoronaGlobalController@destroy')->name('coronas.global.destroy');
+});
+
+// Route::resource('coronas_global', 'CoronaGlobalController');
+// Route::resource('coronas_local', 'CoronaLocalController');

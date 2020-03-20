@@ -17,6 +17,8 @@ class CreateCoronaGlobalsTable extends Migration
             $table->id();
             $table->string('country_name');
             $table->integer('cases');
+            $table->integer('deaths');
+            $table->integer('recovered');
             $table->timestamps();
         });
     }

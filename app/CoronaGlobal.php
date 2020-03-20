@@ -1,7 +1,8 @@
 <?php
 
 namespace App;
-s
+
+use Illuminate\Database\Eloquent\Model;
 
 class CoronaGlobal extends Model
 {

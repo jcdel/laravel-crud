@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CoronaGlobal;
 
 class CoronaGlobalController extends Controller
 {
@@ -13,7 +14,9 @@ class CoronaGlobalController extends Controller
      */
     public function index()
     {
-        //
+        $coronaGlobalCases = CoronaGlobal::all();
+
+        return view('coronas/global/index', compact('coronaGlobalCases'));
     }
 
     /**
@@ -23,7 +26,7 @@ class CoronaGlobalController extends Controller
      */
     public function create()
     {
-        //
+        return view('coronas/global/create');
     }
 
     /**
@@ -34,7 +37,13 @@ class CoronaGlobalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'country_name' => 'required|max:255',
+            'cases' => 'required|numeric',
+        ]);
+        $show = CoronaGlobal::create($validatedData);
+   
+        return redirect('/coronas_global')->with('success', 'Corona Case is successfully saved');
     }
 
     /**
@@ -56,7 +65,9 @@ class CoronaGlobalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $coronaGlobalCase = CoronaGlobal::findOrFail($id);
+
+        return view('coronas/global/edit', compact('coronaGlobalCase'));
     }
 
     /**
@@ -68,7 +79,13 @@ class CoronaGlobalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'country_name' => 'required|max:255',
+            'cases' => 'required|numeric',
+        ]);
+        CoronaGlobal::whereId($id)->update($validatedData);
+
+        return redirect('/coronas_global')->with('success', 'Global Corona Case Data is successfully updated');
     }
 
     /**
@@ -79,6 +96,9 @@ class CoronaGlobalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $coronaGlobalCase = CoronaGlobal::findOrFail($id);
+        $coronaGlobalCase->delete();
+
+        return redirect('/coronas_global')->with('success', 'Global Corona Case Data is successfully deleted');
     }
 }

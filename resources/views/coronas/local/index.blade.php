@@ -15,9 +15,8 @@
       {{ session()->get('success') }}  
     </div><br />
   @endif
-
   <div class="back-btn mb-40"><a href="{{ route('coronas.global.index') }}" class="btn btn-primary">Back to Home</a></div>
-  <div class="title text-center mb-40"><h1>Corona Virus of China</h1></div>
+  <div class="title text-center mb-40"><h1>Corona Virus data of {{ ucfirst($country_name) }}</h1></div>
   <div class="create-btn mb-40"><a href="{{ route('coronas.local.create.local', Request::segment(2)) }}" class="btn btn-primary">Add Data</a></div>
   <table class="table table-striped">
     <thead>

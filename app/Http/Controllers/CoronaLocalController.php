@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\CoronaLocalStoreRequest;
 use App\Http\Requests\CoronaLocalUpdateRequest;
 use App\CoronaLocal;
@@ -58,11 +59,14 @@ class CoronaLocalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+
+        $id = (int) $request->segment(2);
+        $country_name = $this->getCountryById($id);
         $coronaLocalCases = CoronaLocal::where('corona_global_id', $id)->paginate(3);
         
-        return view('coronas/local/index', compact('coronaLocalCases'));
+        return view('coronas/local/index', compact('coronaLocalCases','country_name'));
     }
 
     /**
@@ -111,5 +115,12 @@ class CoronaLocalController extends Controller
         $coronalocalCase->delete();
 
         return redirect('/coronas_global')->with('success', 'Corona Case Data is successfully deleted');
+    }
+
+    public function getCountryById($id)
+    {
+        $country = CoronaGlobal::where('id', $id)->first();
+
+        return $country->country_name;
     }
 }

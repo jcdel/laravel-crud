@@ -24,8 +24,7 @@
 
         {{ csrf_field() }}
 
-        {{-- change to dynamic value --}}
-        <input type="hidden" value="1" name="corona_global_id">
+        <input type="hidden" value="{{ Request::segment(2) }}" name="corona_global_id">
 
           <div class="form-group">
               <label for="age">Age :</label>

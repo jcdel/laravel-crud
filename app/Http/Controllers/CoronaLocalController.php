@@ -39,8 +39,15 @@ class CoronaLocalController extends Controller
      */
     public function store(CoronaLocalStoreRequest $request)
     {
-        $coronaData =  $this->request->all();
-        $show = CoronaLocal::create($userData);
+        $corona =  new CoronaLocal([
+            'corona_global_id' => $request->corona_global_id,
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'nationality' => $request->nationality,
+            'hospital_name' => $request->hospital_name,
+            'status' => $request->status,
+        ]);
+        $corona->save();
    
         return redirect('/coronas_global')->with('success', 'Corona Case is successfully saved');
     }
@@ -92,7 +99,7 @@ class CoronaLocalController extends Controller
         ];
         CoronaLocal::whereId($id)->update($updateData);
 
-        return redirect('/coronas_local/'.$id)->with('success', 'Corona Case Data is successfully updated');
+        return redirect('/coronas_global/')->with('success', 'Corona Case Data is successfully updated');
     }
 
     /**

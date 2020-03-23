@@ -30,7 +30,7 @@ Route::group(['prefix' => 'coronas_global'], function () {
 /**Corona Local Routes */
 Route::group(['prefix' => 'coronas_local'], function () {
     Route::get('/{id}', 'CoronaLocalController@show')->name('coronas.local.show');
-    Route::get('/create/local', 'CoronaLocalController@create')->name('coronas.local.create.local');
+    Route::get('/{parent_id}/create/local', 'CoronaLocalController@create')->name('coronas.local.create.local');
     Route::get('/{id}/edit', 'CoronaLocalController@edit')->name('coronas.local.edit');
     Route::post('/store/local', 'CoronaLocalController@store')->name('coronas.local.store.local');
     Route::patch('/{id}', 'CoronaLocalController@update')->name('coronas.local.update');

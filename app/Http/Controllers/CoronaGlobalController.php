@@ -38,9 +38,14 @@ class CoronaGlobalController extends Controller
      */
     public function store(CoronaGlobalStoreRequest $request)
     {
-        $coronaData = $this->request->all();
-        $show = CoronaGlobal::create($coronaData);
-   
+        $corona = new CoronaGlobal([
+            'country_name' => $request->country_name,
+            'cases' => $request->cases,
+            'deaths' => $request->deaths,
+            'recovered' => $request->recovered
+        ]);
+        $corona->save();
+
         return redirect('/coronas_global')->with('success', 'Corona Case is successfully saved');
     }
 

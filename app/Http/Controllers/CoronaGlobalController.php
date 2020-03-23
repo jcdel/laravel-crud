@@ -15,7 +15,7 @@ class CoronaGlobalController extends Controller
      */
     public function index()
     {
-        $coronaGlobalCases = CoronaGlobal::all();
+        $coronaGlobalCases = CoronaGlobal::paginate(3);
 
         return view('coronas/global/index', compact('coronaGlobalCases'));
     }

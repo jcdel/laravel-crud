@@ -60,10 +60,7 @@ class CoronaLocalController extends Controller
      */
     public function show($id)
     {
-        //$coronaLocalCases = CoronaLocal::where('corona_global_id', $id)->paginate(5);
-
-        $corona = CoronaGlobal::findOrFail($id);
-        $coronaLocalCases = $corona->coronaLocal->toArray();
+        $coronaLocalCases = CoronaLocal::where('corona_global_id', $id)->paginate(3);
         
         return view('coronas/local/index', compact('coronaLocalCases'));
     }

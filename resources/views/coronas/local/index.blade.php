@@ -53,5 +53,6 @@
         @endforeach
     </tbody>
   </table>
+  {{ $coronaLocalCases->links() }}
 <div>
 @endsection

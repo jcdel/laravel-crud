@@ -15,6 +15,6 @@ class CoronaGlobal extends Model
 
     public function coronaLocal()
     {
-        return $this->hasMany(CoronaLocal::class);
+        return $this->hasMany('App\CoronaLocal');
     }
 }

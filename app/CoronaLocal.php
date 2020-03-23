@@ -16,6 +16,6 @@ class CoronaLocal extends Model
     ];
 
     public function coronaGlobal() {
-        return $this->belongsTo(CoronaGlobal::class);
+        return $this->belongsTo('App\CoronaGlobal');
     }
 }

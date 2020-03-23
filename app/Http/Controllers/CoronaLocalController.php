@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CoronaLocalStoreRequest;
+use App\Http\Requests\CoronaLocalUpdateRequest;
 use App\CoronaLocal;
 use App\CoronaGlobal;
 
@@ -33,20 +34,13 @@ class CoronaLocalController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CoronaLocalStoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CoronaLocalStoreRequest $request)
     {
-        $validatedData = $request->validate([
-            'corona_global_id' => 'required|numeric',
-            'age' => 'required|numeric',
-            'gender' => 'required|string',
-            'nationality' => 'required|string',
-            'hospital_name' => 'required|string',
-            'status' => 'required|string'
-        ]);
-        $show = CoronaLocal::create($validatedData);
+        $coronaData =  $this->request->all();
+        $show = CoronaLocal::create($userData);
    
         return redirect('/coronas_global')->with('success', 'Corona Case is successfully saved');
     }
@@ -83,20 +77,20 @@ class CoronaLocalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CoronaLocalUpdateRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CoronaLocalUpdateRequest $request, $id)
     {
-        $validatedData = $request->validate([
-            'age' => 'required|numeric',
-            'gender' => 'required|string',
-            'nationality' => 'required|string',
-            'hospital_name' => 'required|string',
-            'status' => 'required|string'
-        ]);
-        CoronaLocal::whereId($id)->update($validatedData);
+        $updateData = [
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'nationality' => $request->nationality,
+            'hospital_name' => $request->hospital_name,
+            'status' => $request->status
+        ];
+        CoronaLocal::whereId($id)->update($updateData);
 
         return redirect('/coronas_local/'.$id)->with('success', 'Corona Case Data is successfully updated');
     }

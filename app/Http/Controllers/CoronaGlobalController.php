@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CoronaGlobalStoreRequest;
+use App\Http\Requests\CoronaGlobalUpdateRequest;
 use App\CoronaGlobal;
 
 class CoronaGlobalController extends Controller
@@ -32,18 +33,13 @@ class CoronaGlobalController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CoronaGlobalStoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CoronaGlobalStoreRequest $request)
     {
-        $validatedData = $request->validate([
-            'country_name' => 'required|max:255',
-            'cases' => 'required|numeric',
-            'deaths' => 'required|numeric',
-            'recovered' => 'required|numeric'
-        ]);
-        $show = CoronaGlobal::create($validatedData);
+        $coronaData = $this->request->all();
+        $show = CoronaGlobal::create($coronaData);
    
         return redirect('/coronas_global')->with('success', 'Corona Case is successfully saved');
     }
@@ -75,19 +71,19 @@ class CoronaGlobalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CoronaGlobalUpdateRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CoronaGlobalUpdateRequest $request, $id)
     {
-        $validatedData = $request->validate([
-            'country_name' => 'required|max:255',
-            'cases' => 'required|numeric',
-            'deaths' => 'required|numeric',
-            'recovered' => 'required|numeric'
-        ]);
-        CoronaGlobal::whereId($id)->update($validatedData);
+        $updateData = [
+            'country_name' => $request->country_name,
+            'cases' => $request->cases,
+            'deaths' => $request->deaths,
+            'recovered' => $request->recovered
+        ];
+        CoronaGlobal::whereId($id)->update($updateData);
 
         return redirect('/coronas_global')->with('success', 'Corona Case Data is successfully updated');
     }
